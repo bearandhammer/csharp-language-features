@@ -47,7 +47,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecutePatternMatchingFeatureSnippet()
         {
-            Console.WriteLine($"Pattern Matching Feature Snippet {Environment.NewLine}{Separator}");
+            Console.WriteLine($"{ Environment.NewLine }Pattern Matching Feature Snippet {Environment.NewLine}{Separator}");
 
             DisplayShape(new Rectangle
             {
@@ -71,10 +71,10 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Existing 'as' mechanic (getting null if the cast is unsuccessful)
             Rectangle castAsRectangle = shapeInScope as Rectangle;
-            Console.WriteLine(castAsRectangle == null ? "Cast to Rectangle invalid" : $"castAsRectangle.Height: {castAsRectangle.Height}");
+            Console.WriteLine(castAsRectangle == null ? "Cast to Rectangle invalid" : $"castAsRectangle.Height: { castAsRectangle.Height }");
 
             // Use '!' pattern matching in a useful way? (maybe)
-            Console.WriteLine(!(shapeInScope is Rectangle castAsRectangle2) ? "Cast to Rectangle invalid" : $"castAsRectangle2.Height: {castAsRectangle2.Height}");
+            Console.WriteLine(!(shapeInScope is Rectangle castAsRectangle2) ? "Cast to Rectangle invalid" : $"castAsRectangle2.Height: { castAsRectangle2.Height }");
 
             // Use in a classic if statement
             if (shapeInScope is Rectangle castRectangle3)
