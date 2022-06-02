@@ -17,7 +17,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteOutVariableFeatureSnippet()
         {
-            Console.WriteLine($"Out Variable Feature Snippet {Environment.NewLine}");
+            Console.WriteLine($"Out Variable Feature Snippet {Environment.NewLine}{ Separator }");
 
             // Old out variable mechanic, requiring explicit/separate variable declaration
             DateTime test1DateTime;
