@@ -4,7 +4,7 @@
     /// Utility class that represents a rectangle.
     /// </summary>
     /// <seealso cref="Shape" />
-    internal sealed class Rectange : Shape
+    internal sealed class Rectangle : Shape
     {
         /// <summary>
         /// Gets or sets the Height of this Rectangle.
