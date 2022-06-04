@@ -74,7 +74,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             // Custom field names can be forced, if desired
             (double newSum, double newProduct) newSumAndProduct2 = NewSumAndProduct(2, 5);
             Console.WriteLine($"newSumAndProduct2: newSum = {newSumAndProduct2.newSum}, newProduct = {newSumAndProduct2.newProduct}");
-            
+
             // Inspection of the type (System.ValueType`2[System.Double, System.Double]) - ValueTuple = allows syntactic sugar!
             // Is possible to use ValueTuple directly but not really that beneficial
             Console.WriteLine($"newSumAndProduct2 Type = {newSumAndProduct2.GetType()}");
@@ -94,9 +94,9 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Tuples can be generated with field names inline too
             var person = (name: "Lew", age: 38, address: "1 The Street");
-            Console.WriteLine($"person = { person }");
-            Console.WriteLine($"Name: { person.name }, Age: { person.age }, Address: { person.address }");
-            Console.WriteLine($"person Type = { person.GetType() }");
+            Console.WriteLine($"person = {person}");
+            Console.WriteLine($"Name: {person.name}, Age: {person.age}, Address: {person.address}");
+            Console.WriteLine($"person Type = {person.GetType()}");
 
             // Also, usable in any place where ordinary types are used (to use field names here they must be in the Func signature)
             var testFunc = new Func<double, double, (double sum, double product)>((doubleOne, doubleTwo) => (doubleOne + doubleTwo, doubleOne * doubleTwo));
@@ -105,6 +105,32 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Syntactic sugar of field names, does this make it to the IL (not just Item1, Item2, etc.)? Answer is both yes/no. Referencing the fields means you
             // are just referencing Item1, Item2, etc. but pieces of a public API that use tuples with field names are preserved (TupleElementNames attribute)
+        }
+
+        /// <summary>
+        /// Executes demo code showing deconstruction mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteDeconstructionFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Deconstruction Mechanics Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Obviously, deconstruction works very well in tandem with tuple syntax
+            var bumblebee = (name: "Stevie Bee", age: 1, size: 15);
+            var (name, age, size) = bumblebee;
+            Console.WriteLine($"Bumblebee: Name = { name }, Age = { age }, Size = { size }");
+
+            // Deconstruction is not limited to tuples, however. Any of your types can support deconstruction, as follows
+            Point testPoint = new Point() { X = 2, Y = 3 };
+
+            // Requires a 'Deconstruct' method (return type void)
+            var (x, y) = testPoint;
+            Console.WriteLine($"testPoint: x = {x}, y = {y}");
+
+            // You can happily use 'discards' also if you don't need certain values
+            var (x1, _) = testPoint;
+            Console.WriteLine($"x1 = {x}");
+
+
         }
 
         /// <summary>
