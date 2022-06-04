@@ -11,9 +11,6 @@ namespace CSharp.Language.Features.V7.Models
         /// <summary>
         /// This circle says hello!
         /// </summary>
-        internal void SayHello()
-        {
-            Console.WriteLine("Hello from this circle!");
-        }
+        internal void SayHello() => Console.WriteLine("Hello from this circle!");
     }
 }

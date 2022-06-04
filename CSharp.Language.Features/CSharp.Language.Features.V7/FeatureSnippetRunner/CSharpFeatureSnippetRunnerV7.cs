@@ -1,4 +1,5 @@
-﻿using CSharp.Language.Features.V7.Models;
+﻿using CSharp.Language.Features.V7.Constants;
+using CSharp.Language.Features.V7.Models;
 using System;
 
 namespace CSharp.Language.Features.V7.FeatureSnippetRunner
@@ -9,16 +10,11 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
     internal class CSharpFeatureSnippetRunnerV7
     {
         /// <summary>
-        /// Represents a string separator for section titles (when snippets are executed).
-        /// </summary>
-        private const string Separator = "------------------------------------";
-
-        /// <summary>
         /// Executes demo code showing out variable mechanic changes in C# V7.
         /// </summary>
         internal void ExecuteOutVariableFeatureSnippet()
         {
-            Console.WriteLine($"Out Variable Feature Snippet {Environment.NewLine}{ Separator }");
+            Console.WriteLine($"Out Variable Feature Snippet {Environment.NewLine}{ TextConstant.Separator }");
 
             // Old out variable mechanic, requiring explicit/separate variable declaration
             DateTime test1DateTime;
@@ -47,7 +43,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecutePatternMatchingFeatureSnippet()
         {
-            Console.WriteLine($"{ Environment.NewLine }Pattern Matching Feature Snippet {Environment.NewLine}{Separator}");
+            Console.WriteLine($"{ Environment.NewLine }Pattern Matching Feature Snippet { Environment.NewLine }{ TextConstant.Separator }");
 
             DisplayShape(new Rectangle
             {
