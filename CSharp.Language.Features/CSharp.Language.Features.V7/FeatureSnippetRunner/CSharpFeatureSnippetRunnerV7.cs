@@ -10,6 +10,30 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
     internal class CSharpFeatureSnippetRunnerV7
     {
         /// <summary>
+        /// Executes demo code showing deconstruction mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteDeconstructionFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Deconstruction Mechanics Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Obviously, deconstruction works very well in tandem with tuple syntax
+            var bumblebee = (name: "Stevie Bee", age: 1, size: 15);
+            var (name, age, size) = bumblebee;
+            Console.WriteLine($"Bumblebee: Name = {name}, Age = {age}, Size = {size}");
+
+            // Deconstruction is not limited to tuples, however. Any of your types can support deconstruction, as follows
+            Point testPoint = new Point() { X = 2, Y = 3 };
+
+            // Requires a 'Deconstruct' method (return type void)
+            var (x, y) = testPoint;
+            Console.WriteLine($"testPoint: x = {x}, y = {y}");
+
+            // You can happily use 'discards' also if you don't need certain values
+            var (x1, _) = testPoint;
+            Console.WriteLine($"x1 = {x}");
+        }
+
+        /// <summary>
         /// Executes demo code showing out variable mechanic changes in C# V7.
         /// </summary>
         internal void ExecuteOutVariableFeatureSnippet()
@@ -105,32 +129,6 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Syntactic sugar of field names, does this make it to the IL (not just Item1, Item2, etc.)? Answer is both yes/no. Referencing the fields means you
             // are just referencing Item1, Item2, etc. but pieces of a public API that use tuples with field names are preserved (TupleElementNames attribute)
-        }
-
-        /// <summary>
-        /// Executes demo code showing deconstruction mechanics in C# V7.
-        /// </summary>
-        internal void ExecuteDeconstructionFeatureSnippet()
-        {
-            Console.WriteLine($"{Environment.NewLine}Deconstruction Mechanics Snippet {Environment.NewLine}{TextConstant.Separator}");
-
-            // Obviously, deconstruction works very well in tandem with tuple syntax
-            var bumblebee = (name: "Stevie Bee", age: 1, size: 15);
-            var (name, age, size) = bumblebee;
-            Console.WriteLine($"Bumblebee: Name = { name }, Age = { age }, Size = { size }");
-
-            // Deconstruction is not limited to tuples, however. Any of your types can support deconstruction, as follows
-            Point testPoint = new Point() { X = 2, Y = 3 };
-
-            // Requires a 'Deconstruct' method (return type void)
-            var (x, y) = testPoint;
-            Console.WriteLine($"testPoint: x = {x}, y = {y}");
-
-            // You can happily use 'discards' also if you don't need certain values
-            var (x1, _) = testPoint;
-            Console.WriteLine($"x1 = {x}");
-
-
         }
 
         /// <summary>
