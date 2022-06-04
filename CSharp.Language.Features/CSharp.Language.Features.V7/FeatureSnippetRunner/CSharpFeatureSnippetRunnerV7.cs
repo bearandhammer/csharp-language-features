@@ -115,6 +115,9 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// <returns>A tuple type using more concise syntax.</returns>
         private static (double sum, double product) NewSumAndProduct(double firstDouble, double secondDouble) => (firstDouble + secondDouble, firstDouble * secondDouble);
 
+        /// <summary>
+        /// Executes demo code showing tuple syntax changes in C# V7.
+        /// </summary>
         internal void ExecuteTupleFeatureSnippet()
         {
             // NOTE: tuples has existed in the BCL as different types with a varying number of parameters
@@ -132,6 +135,9 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             // Custom field names can be forced, if desired
             (double newSum, double newProduct) newSumAndProduct2 = NewSumAndProduct(3, 6);
             Console.WriteLine($"sum = { newSumAndProduct2.newSum }, product = { newSumAndProduct2.newProduct }");
+
+            // Inspection of the type
+            Console.WriteLine($"newSumAndProduct2 Type = { newSumAndProduct2.GetType().Name }");
         }
     }
 }
