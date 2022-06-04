@@ -65,18 +65,46 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Limits you to the use of Item1/Item2 (maybe OK for small amounts of values, but is verbose and this issue
             // worsens with further values
-            Console.WriteLine($"sum = {sumAndProduct.Item1}, product = {sumAndProduct.Item2}");
+            Console.WriteLine($"sumAndProduct: sum = {sumAndProduct.Item1}, product = {sumAndProduct.Item2}");
 
             // Improved tuple syntax (note the defined field names, for extra clarity - you can still use Item1, Item2, etc. if you want to)...
             var newSumAndProduct = NewSumAndProduct(2, 5);
-            Console.WriteLine($"sum = {newSumAndProduct.sum}, product = {newSumAndProduct.product}");
+            Console.WriteLine($"newSumAndProduct: sum = {newSumAndProduct.sum}, product = {newSumAndProduct.product}");
 
             // Custom field names can be forced, if desired
-            (double newSum, double newProduct) newSumAndProduct2 = NewSumAndProduct(3, 6);
-            Console.WriteLine($"sum = {newSumAndProduct2.newSum}, product = {newSumAndProduct2.newProduct}");
+            (double newSum, double newProduct) newSumAndProduct2 = NewSumAndProduct(2, 5);
+            Console.WriteLine($"newSumAndProduct2: newSum = {newSumAndProduct2.newSum}, newProduct = {newSumAndProduct2.newProduct}");
+            
+            // Inspection of the type (System.ValueType`2[System.Double, System.Double]) - ValueTuple = allows syntactic sugar!
+            // Is possible to use ValueTuple directly but not really that beneficial
+            Console.WriteLine($"newSumAndProduct2 Type = {newSumAndProduct2.GetType()}");
 
-            // Inspection of the type
-            Console.WriteLine($"newSumAndProduct2 Type = {newSumAndProduct2.GetType().Name}");
+            // Full deconstruction is also possible (with type inference)
+            var (deconstructedSum, deconstructedProduct) = NewSumAndProduct(2, 5);
+            Console.WriteLine($"deconstructedSum = {deconstructedSum}, deconstructedProduct = {deconstructedProduct}");
+
+            // Or without an inference
+            (double deconstructedSum2, double deconstructedProduct2) = NewSumAndProduct(2, 5);
+            Console.WriteLine($"deconstructedSum2 = {deconstructedSum2}, deconstructedProduct2 = {deconstructedProduct2}");
+
+            // Also legal to declare variables beforehand, like so
+            double deconstructedSum3, deconstructedProduct3;
+            (deconstructedSum3, deconstructedProduct3) = NewSumAndProduct(2, 5);
+            Console.WriteLine($"deconstructedSum3 = {deconstructedSum3}, deconstructedProduct3 = {deconstructedProduct3}");
+
+            // Tuples can be generated with field names inline too
+            var person = (name: "Lew", age: 38, address: "1 The Street");
+            Console.WriteLine($"person = { person }");
+            Console.WriteLine($"Name: { person.name }, Age: { person.age }, Address: { person.address }");
+            Console.WriteLine($"person Type = { person.GetType() }");
+
+            // Also, usable in any place where ordinary types are used (to use field names here they must be in the Func signature)
+            var testFunc = new Func<double, double, (double sum, double product)>((doubleOne, doubleTwo) => (doubleOne + doubleTwo, doubleOne * doubleTwo));
+            var testFuncResult = testFunc(3, 6);
+            Console.WriteLine($"testFuncResult: sum = {testFuncResult.sum}, product = {testFuncResult.product}");
+
+            // Syntactic sugar of field names, does this make it to the IL (not just Item1, Item2, etc.)? Answer is both yes/no. Referencing the fields means you
+            // are just referencing Item1, Item2, etc. but pieces of a public API that use tuples with field names are preserved (TupleElementNames attribute)
         }
 
         /// <summary>
