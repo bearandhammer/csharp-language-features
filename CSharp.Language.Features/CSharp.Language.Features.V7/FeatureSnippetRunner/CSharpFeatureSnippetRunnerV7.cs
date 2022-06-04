@@ -95,5 +95,43 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Switching on tuples...not available at this stage in feature lifecycle (is in F#)
         }
+
+        /// <summary>
+        /// Private static method using traditional mechanics to create a <see cref="Tuple"/>.
+        /// For illustration purposes only.
+        /// </summary>
+        /// <param name="firstDouble">The first incoming double value.</param>
+        /// <param name="secondDouble">The second incoming double value.</param>
+        /// <returns>A <see cref="Tuple"/> containing the sum and product of the two double values provided (for demo purposes only).</returns>
+        private static Tuple<double, double> SumAndProduct(double firstDouble, double secondDouble) => Tuple.Create(firstDouble + secondDouble, firstDouble * secondDouble);
+
+        /// <summary>
+        /// Private static method that illustrates the use of new Tuple syntax.
+        /// For illustration purposes only.
+        /// NOTE: Historically required the installation of the 'System.ValueTuple' NuGet package (but no longer so).
+        /// </summary>
+        /// <param name="firstDouble">The first incoming double value.</param>
+        /// <param name="secondDouble">The second incoming double value.</param>
+        /// <returns>A tuple type using more concise syntax.</returns>
+        private static (double sum, double product) NewSumAndProduct(double firstDouble, double secondDouble) => (firstDouble + secondDouble, firstDouble * secondDouble);
+
+        internal void ExecuteTupleFeatureSnippet()
+        {
+            // NOTE: tuples has existed in the BCL as different types with a varying number of parameters
+            // This perhaps isn't as good or as flexibility as it could be, for example...
+            Tuple<double, double> sumAndProduct = SumAndProduct(2, 5);
+
+            // Limits you to the use of Item1/Item2 (maybe OK for small amounts of values, but is verbose and this issue
+            // worsens with further values
+            Console.WriteLine($"sum = { sumAndProduct.Item1 }, product = { sumAndProduct.Item2 }");
+
+            // Improved tuple syntax (note the defined field names, for extra clarity - you can still use Item1, Item2, etc. if you want to)...
+            var newSumAndProduct = NewSumAndProduct(2, 5);
+            Console.WriteLine($"sum = { newSumAndProduct.sum }, product = {newSumAndProduct.product }");
+
+            // Custom field names can be forced, if desired
+            (double newSum, double newProduct) newSumAndProduct2 = NewSumAndProduct(3, 6);
+            Console.WriteLine($"sum = { newSumAndProduct2.newSum }, product = { newSumAndProduct2.newProduct }");
+        }
     }
 }
