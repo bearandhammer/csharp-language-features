@@ -1,5 +1,6 @@
 ﻿using CSharp.Language.Features.V7.Constants;
 using CSharp.Language.Features.V7.Models;
+using CSharp.Language.Features.V7.UtilityDemo;
 using System;
 
 namespace CSharp.Language.Features.V7.FeatureSnippetRunner
@@ -74,6 +75,23 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
                 Height = 20,
                 Width = 20
             });
+        }
+
+        /// <summary>
+        /// Executes demo code showing local function syntax changes in C# V7 (using the <see cref="EquationSolver"/> type).
+        /// </summary>
+        internal void ExecuteLocalFunctionChangesFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Local Function Changes Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Create and use an 'EquationSolver' utilising the same arguments each time
+            EquationSolver testEquationSolver = new EquationSolver();
+
+            double a = 1, b = 10, c = 16;
+            Console.WriteLine($"SolveQuadraticClassicLocalFunctionSyntax result: {testEquationSolver.SolveQuadraticClassicLocalFunctionSyntax(a, b, c)}");
+            Console.WriteLine($"SolveQuadraticNewLocalFunctionSyntaxOne result: {testEquationSolver.SolveQuadraticNewLocalFunctionSyntaxOne(a, b, c)}");
+            Console.WriteLine($"SolveQuadraticNewLocalFunctionSyntaxTwo result: {testEquationSolver.SolveQuadraticNewLocalFunctionSyntaxTwo(a, b, c)}");
+            Console.WriteLine($"SolveQuadraticNewLocalFunctionSyntaxThree result: {testEquationSolver.SolveQuadraticNewLocalFunctionSyntaxThree(a, b, c)}");
         }
 
         /// <summary>

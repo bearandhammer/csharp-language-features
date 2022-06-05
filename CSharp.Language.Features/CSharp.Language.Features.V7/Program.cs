@@ -20,6 +20,7 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecutePatternMatchingFeatureSnippet();
             featureSnippetRunner.ExecuteTupleFeatureSnippet();
             featureSnippetRunner.ExecuteDeconstructionFeatureSnippet();
+            featureSnippetRunner.ExecuteLocalFunctionChangesFeatureSnippet();
         }
 
         /// <summary>
