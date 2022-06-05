@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSharp.Language.Features.V7.Constants
+﻿namespace CSharp.Language.Features.V7.Constants
 {
     /// <summary>
     /// Internal static class holding constants for use in this demo project.
@@ -12,6 +8,6 @@ namespace CSharp.Language.Features.V7.Constants
         /// <summary>
         /// Represents a string separator for section titles (when snippets are executed).
         /// </summary>
-        internal const string Separator = "------------------------------------";
+        internal const string Separator = "----------------------------------------------";
     }
 }

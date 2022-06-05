@@ -21,6 +21,7 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecuteTupleFeatureSnippet();
             featureSnippetRunner.ExecuteDeconstructionFeatureSnippet();
             featureSnippetRunner.ExecuteLocalFunctionChangesFeatureSnippet();
+            featureSnippetRunner.ExecuteExpressionBodiedMemberChangesFeatureSnippet();
         }
 
         /// <summary>

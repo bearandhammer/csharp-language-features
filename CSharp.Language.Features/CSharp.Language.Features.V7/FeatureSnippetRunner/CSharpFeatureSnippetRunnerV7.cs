@@ -95,6 +95,27 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing local function syntax changes in C# V7 (using the <see cref="EquationSolver"/> type).
+        /// </summary>
+        internal void ExecuteExpressionBodiedMemberChangesFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Expression Bodied Member Changes Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Utilise the test 'Person' type to demonstrate the changes
+            Person testPerson = new Person(1, "Steve Jones");
+
+            // Show person details before changes
+            Console.WriteLine($"testPerson.Name (testId): {testPerson.Name}");
+            Console.WriteLine($"testPerson.Id (testId): {testPerson.TestId}");
+
+            // Change name and inspect (rigged to the testId behind the scenes, but just for illustration - not meaningful code)
+            testPerson.Name = "Barry Johnson";
+
+            // Reinspect the name
+            Console.WriteLine($"testPerson.Name (testId): {testPerson.Name}");
+        }
+
+        /// <summary>
         /// Executes demo code showing tuple syntax changes in C# V7.
         /// </summary>
         internal void ExecuteTupleFeatureSnippet()
