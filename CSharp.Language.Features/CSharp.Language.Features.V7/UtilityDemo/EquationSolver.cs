@@ -64,23 +64,23 @@ namespace CSharp.Language.Features.V7.UtilityDemo
             return GetQuadraticResolutionTuple(a, b, disc);
         }
 
-        ///// <summary>
-        ///// Illustrates the new syntax of a local function (v2) to solve an equation (illustration only).
-        ///// </summary>
-        ///// <param name="a">The equation value 'a'.</param>
-        ///// <param name="b">The equation value 'b'.</param>
-        ///// <param name="c">The equation value 'c'.</param>
-        ///// <returns>A <see cref="Tuple"/> representing the resolution.</returns>
-        //internal Tuple<double, double> SolveQuadraticNewLocalFunctionSyntaxThree(double a, double b, double c)
-        //{
-        //    // Then, when using the function, we don't provide parameters (as the local function has used the raw arguments)
-        //    double disc = CalculateDiscriminant();
+        /// <summary>
+        /// Illustrates the new syntax of a local function (v3) to solve an equation (illustration only).
+        /// </summary>
+        /// <param name="a">The equation value 'a'.</param>
+        /// <param name="b">The equation value 'b'.</param>
+        /// <param name="c">The equation value 'c'.</param>
+        /// <returns>A <see cref="Tuple"/> representing the resolution.</returns>
+        internal Tuple<double, double> SolveQuadraticNewLocalFunctionSyntaxThree(double a, double b, double c)
+        {
+            // Then, when using the function, we don't provide parameters (as the local function has used the raw arguments)
+            double disc = CalculateDiscriminant();
 
-        //    return GetQuadraticResolutionTuple(a, b, disc);
+            return GetQuadraticResolutionTuple(a, b, disc);
 
-
-        //    double CalculateDiscriminant() => b * b - 4 * a * c;
-        //}
+            // Scope rules for local functions - same as if we were in a class, so they can reside 'after' their usage (completely valid)
+            double CalculateDiscriminant() => b * b - 4 * a * c;
+        }
 
         /// <summary>
         /// Gets a <see cref="Tuple"/> representing the result for all of the demo methods in this type.
