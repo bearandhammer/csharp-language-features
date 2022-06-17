@@ -36,7 +36,7 @@ namespace CSharp.Language.Features.V7.Models
         /// <summary>
         /// Gets or sets the person name (using testId). Illustrating expression-bodied properties.
         /// </summary>
-        public string Name
+        internal string Name
         {
             get => names[testId];
             set => names[testId] = value;
@@ -45,6 +45,6 @@ namespace CSharp.Language.Features.V7.Models
         /// <summary>
         /// Gets the testId (example of expression-bodied get only).
         /// </summary>
-        public int TestId => testId;
+        internal int TestId => testId;
     }
 }
