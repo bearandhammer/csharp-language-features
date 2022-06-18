@@ -26,6 +26,7 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecuteExpressionBodiedMemberChangesFeatureSnippet();
             featureSnippetRunner.ExecuteThrowExpressionFeatureSnippet();
             featureSnippetRunner.ExecuteValueTypeFeatureSnippet();
+            featureSnippetRunner.ExecuteLiteralImprovementsFeatureSnippet();
         }
 
         /// <summary>
