@@ -171,15 +171,18 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             // are just referencing Item1, Item2, etc. but pieces of a public API that use tuples with field names are preserved (TupleElementNames attribute)
         }
 
-        internal void Test()
+        /// <summary>
+        /// Executes demo code showing ref locals feature mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteRefLocalsFeatureSnippet()
         {
-            #region Example One
+            Console.WriteLine($"{Environment.NewLine}Ref Locals Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
 
             // References to local variables
-            int[] numbers = { 1, 2, 3 };
+            int[] sampleNumbers = { 1, 2, 3 };
 
             // Pointer, or reference, to a value
-            ref int refToSecond = ref numbers[1];
+            ref int refToSecond = ref sampleNumbers[1];
 
             var valueOfSecond = refToSecond;
             refToSecond = 123;
@@ -187,15 +190,12 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             // You cannot re-bind a reference, once assigned at this language version
             // refToSecond = ref numbers[0];
 
-            Console.WriteLine(string.Join(",", numbers));
-
-            #endregion Example One
-
-            #region Example Two
+            Console.WriteLine(string.Join(",", sampleNumbers));
+            Console.WriteLine($"valueOfSecond = { valueOfSecond }");
 
             // You can do silly things - it'll persist even if the array element itself is no longer available
-            Array.Resize(ref numbers, 1);
-            Console.WriteLine($"second = { refToSecond }, array size is { numbers.Length }");
+            Array.Resize(ref sampleNumbers, 1);
+            Console.WriteLine($"second = { refToSecond }, array size is { sampleNumbers.Length }");
 
             // You can continue to manipulate the reference, as expected
             refToSecond = 678;
@@ -204,84 +204,46 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             // Of course, this will still throw an exception (IndexOutOfRangeException)
             //numbers.SetValue(321, 1);
 
-            #endregion Example Two
-
-            #region Example Three
-
             // Things could become sour here...property or indexer cannot be passed as an out or ref parameter (so constrained here)
             //List<int> numberList = new List<int> { 1, 2, 3 };
             //ref int second = ref numberList[1];
-
-            #endregion Example Three
         }
 
-        internal void Test2()
+        /// <summary>
+        /// Executes demo code showing ref returns feature mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteRefReturnsFeatureSnippet()
         {
-            int[] moreNumbers = { 10, 20, 30 };
+            Console.WriteLine($"{Environment.NewLine}Ref Returns Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            int[] sampleNumbers = { 10, 20, 30 };
 
             // Notice that you must specific 'ref' before the invoked method also.
-            ref int refToThirty = ref Find(moreNumbers, 30);
+            ref int refToThirty = ref ByRefSampleDemo.GetIntRefFromArray(sampleNumbers, 30);
 
             // Manipulate the reference
             refToThirty = 1234;
-
-            Console.WriteLine(String.Join(",", moreNumbers));
+            Console.WriteLine(string.Join(",", sampleNumbers));
 
             // You can do quite bizarre things, which are of course legal (to obtain a reference and assign it directly - quite verbose)
-            Find(moreNumbers, 10) = 9999;
+            ByRefSampleDemo.GetIntRefFromArray(sampleNumbers, 10) = 9999;
+            Console.WriteLine(string.Join(",", sampleNumbers));
 
-            Console.WriteLine(String.Join(",", moreNumbers));
-        }
-
-        internal void Test3()
-        {
-            int a = 1, b = 2;
+            // Next, a sample to get a reference to the minimum of two values
+            int valueOne = 1, valueTwo = 2;
 
             // Note, structuring the statement in this way just gives you a by value return
-            int valueMinValue = Min(ref a, ref b);
+            int minValue = ByRefSampleDemo.GetMinIntRef(ref valueOne, ref valueTwo);
 
             // On consumption of the Min method the use of ref is prevalent (a bit contagious). Here, we do get the fully-fledged reference
-            ref int minValue = ref Min(ref a, ref b);
+            ref int minRefOfValue = ref ByRefSampleDemo.GetMinIntRef(ref valueOne, ref valueTwo);
+            minRefOfValue = 100;
 
-        }
-
-        static ref int Find(int[] numbers, int value)
-        {
-            for (int index = 0; index < numbers.Length; index++)
-            {
-                if (numbers[index] == value)
-                {
-                    // Using a reference in the return statement...
-                    return ref numbers[index];
-                }
-            }
-
-            // What do you return in this case...you would normally return -1 or 0, for example, but we need a 'ref'...
-            // return -1; //Won't work
-
-            // Also, you can't trick the compiler
-            //int fail = -1;
-            //return ref fail;
-
-            throw new ArgumentOutOfRangeException(nameof(value), "Provided argument is out of range and was not discovered in the target array.");
-        }
-
-        static ref int Min(ref int x, ref int y)
-        {
-            // Limitation - "By-value returns may only be used in methods that return by value"
-            // return x < y ? x : y;
-
-            // Also neither of these are legal syntax either...
-            // return x < y ? (ref x) : (ref y);
-            // return ref (x < y ? x : y);
-
-            // Only way, at this stage, it to write a full-fat if statement
-            if (x < y)
-            {
-                return ref x;
-            }
-
-            return ref y;
+            // Operate on and show the results (minValue unchanged but minRefOfValue altered)
+            Console.WriteLine($"valueOne = { valueOne }");
+            Console.WriteLine($"valueTwo = { valueTwo }");
+            Console.WriteLine($"minValue = { minValue }");
+            Console.WriteLine($"minRefOfValue = { minRefOfValue }");
         }
 
         /// <summary>
