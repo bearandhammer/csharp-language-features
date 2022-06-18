@@ -10,10 +10,10 @@ namespace CSharp.Language.Features.V7.UtilityDemo
     internal sealed class DirectoryInspector
     {
         /// <summary>
-        /// Gets the size of the directory.
+        /// Gets the size of the directory using a <see cref="Task"/>.
         /// </summary>
-        /// <param name="targetDirectory">The target directory.</param>
-        /// <returns></returns>
+        /// <param name="targetDirectory">The target directory to inspect.</param>
+        /// <returns>The size of the files (recursively) in the target directory.</returns>
         internal async Task<long> GetDirectorySize(string targetDirectory)
         {
             if (!Directory.EnumerateFileSystemEntries(targetDirectory).Any())
@@ -28,10 +28,10 @@ namespace CSharp.Language.Features.V7.UtilityDemo
         }
 
         /// <summary>
-        /// Gets the directory size with value task.
+        /// Gets the size of the directory using a <see cref="ValueTask"/>.
         /// </summary>
-        /// <param name="targetDirectory">The target directory.</param>
-        /// <returns></returns>
+        /// <param name="targetDirectory">The target directory to inspect.</param>
+        /// <returns>The size of the files (recursively) in the target directory.</returns>
         internal async ValueTask<long> GetDirectorySizeWithValueTask(string targetDirectory)
         {
             if (!Directory.EnumerateFileSystemEntries(targetDirectory).Any())

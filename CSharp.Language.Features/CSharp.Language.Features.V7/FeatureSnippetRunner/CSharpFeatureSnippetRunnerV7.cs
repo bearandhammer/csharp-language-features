@@ -239,8 +239,8 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
                 long directorySize = await testInspector.GetDirectorySize(targetDirectory),
                     directorySizeWithValueTask = await testInspector.GetDirectorySizeWithValueTask(targetDirectory);
 
-                Console.WriteLine($"directorySize = {directorySize}");
-                Console.WriteLine($"directorySizeWithValueTask = {directorySizeWithValueTask}");
+                Console.WriteLine($"directorySize = {directorySize} bytes");
+                Console.WriteLine($"directorySizeWithValueTask = {directorySizeWithValueTask} bytes");
             });
 
             demoValueTypeTask.GetAwaiter().GetResult();
