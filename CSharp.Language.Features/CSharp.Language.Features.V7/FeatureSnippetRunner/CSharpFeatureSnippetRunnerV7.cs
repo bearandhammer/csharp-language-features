@@ -225,28 +225,6 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
-        /// Executes demo code showing <see cref="ValueTask"/> mechanics in C# V7.
-        /// </summary>
-        internal void ExecuteValueTypeFeatureSnippet()
-        {
-            Console.WriteLine($"{Environment.NewLine}ValueTask Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
-
-            Task demoValueTypeTask = Task.Run(async () =>
-            {
-                string targetDirectory = @"C:\temp";
-
-                DirectoryInspector testInspector = new DirectoryInspector();
-                long directorySize = await testInspector.GetDirectorySize(targetDirectory),
-                    directorySizeWithValueTask = await testInspector.GetDirectorySizeWithValueTask(targetDirectory);
-
-                Console.WriteLine($"directorySize = {directorySize} bytes");
-                Console.WriteLine($"directorySizeWithValueTask = {directorySizeWithValueTask} bytes");
-            });
-
-            demoValueTypeTask.GetAwaiter().GetResult();
-        }
-
-        /// <summary>
         /// Executes demo code showing tuple syntax changes in C# V7.
         /// </summary>
         internal void ExecuteTupleFeatureSnippet()
@@ -299,6 +277,28 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Syntactic sugar of field names, does this make it to the IL (not just Item1, Item2, etc.)? Answer is both yes/no. Referencing the fields means you
             // are just referencing Item1, Item2, etc. but pieces of a public API that use tuples with field names are preserved (TupleElementNames attribute)
+        }
+
+        /// <summary>
+        /// Executes demo code showing <see cref="ValueTask"/> mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteValueTypeFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}ValueTask Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            Task demoValueTypeTask = Task.Run(async () =>
+            {
+                string targetDirectory = @"C:\temp";
+
+                DirectoryInspector testInspector = new DirectoryInspector();
+                long directorySize = await testInspector.GetDirectorySize(targetDirectory),
+                    directorySizeWithValueTask = await testInspector.GetDirectorySizeWithValueTask(targetDirectory);
+
+                Console.WriteLine($"directorySize = {directorySize} bytes");
+                Console.WriteLine($"directorySizeWithValueTask = {directorySizeWithValueTask} bytes");
+            });
+
+            demoValueTypeTask.GetAwaiter().GetResult();
         }
 
         /// <summary>
