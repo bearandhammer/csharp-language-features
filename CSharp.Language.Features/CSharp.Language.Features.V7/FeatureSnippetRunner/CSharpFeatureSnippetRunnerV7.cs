@@ -2,6 +2,7 @@
 using CSharp.Language.Features.V7.Models;
 using CSharp.Language.Features.V7.UtilityDemo;
 using System;
+using System.Threading.Tasks;
 
 namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 {
@@ -221,6 +222,28 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
                 // As expected, bonusPercentage will, of course, be -1
                 Console.WriteLine($"bonusPercentage = {bonusPercentage}");
             }
+        }
+
+        /// <summary>
+        /// Executes demo code showing <see cref="ValueTask"/> mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteValueTypeFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}ValueTask Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            Task demoValueTypeTask = Task.Run(async () =>
+            {
+                string targetDirectory = @"C:\temp";
+
+                DirectoryInspector testInspector = new DirectoryInspector();
+                long directorySize = await testInspector.GetDirectorySize(targetDirectory),
+                    directorySizeWithValueTask = await testInspector.GetDirectorySizeWithValueTask(targetDirectory);
+
+                Console.WriteLine($"directorySize = {directorySize}");
+                Console.WriteLine($"directorySizeWithValueTask = {directorySizeWithValueTask}");
+            });
+
+            demoValueTypeTask.GetAwaiter().GetResult();
         }
 
         /// <summary>
