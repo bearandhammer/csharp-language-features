@@ -191,6 +191,39 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing throw expression mechanics in C# V7.
+        /// </summary>
+        internal void ExecuteThrowExpressionFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Throw Expressions Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            try
+            {
+                Contact contactOne = new Contact(null);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            int bonusPercentage = -1;
+            try
+            {
+                Contact contactTwo = new Contact("Barry");
+                contactTwo.CalculateBonus(bonusPercentage);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // As expected, bonusPercentage will, of course, be -1
+                Console.WriteLine($"bonusPercentage = {bonusPercentage}");
+            }
+        }
+
+        /// <summary>
         /// Executes demo code showing tuple syntax changes in C# V7.
         /// </summary>
         internal void ExecuteTupleFeatureSnippet()
