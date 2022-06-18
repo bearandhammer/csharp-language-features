@@ -57,6 +57,37 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing literal improvements in C# V7.
+        /// </summary>
+        internal void ExecuteLiteralImprovementsFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Literal Improvements Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Small improvements to literals for numeric types, as follows (makes reading these less cumbersome) - useful for delimiting
+            int oneMillionLiteral = 1_000_000;
+
+            // The position of the underscores can be positioned where you like and you can have as many as you like (should you want to)
+            int numberOneLiteral = 129_9_21,
+                numberTwoLiteral = 129__321_____999;
+
+            // Underscores ignored by the compiler
+
+            // Trailing underscores are a 'nope' of course
+            //int trailingUnderscores = 150_000___;
+
+            // Works for hex/binary
+            long hexLiteral = 0xFF_FF_FF_FF;
+            int binaryLiteral = 0b_0010_1010;
+
+            // Inspect the values of the defined literals
+            Console.WriteLine($"oneMillionLiteral = {oneMillionLiteral}");
+            Console.WriteLine($"numberOneLiteral = {numberOneLiteral}");
+            Console.WriteLine($"numberTwoLiteral = {numberTwoLiteral}");
+            Console.WriteLine($"hexLiteral = {hexLiteral}");
+            Console.WriteLine($"binaryLiteral = {binaryLiteral}");
+        }
+
+        /// <summary>
         /// Executes demo code showing local function syntax changes in C# V7 (using the <see cref="EquationSolver"/> type).
         /// </summary>
         internal void ExecuteLocalFunctionChangesFeatureSnippet()
@@ -299,37 +330,6 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             });
 
             demoValueTypeTask.GetAwaiter().GetResult();
-        }
-
-        /// <summary>
-        /// Executes demo code showing literal improvements in C# V7.
-        /// </summary>
-        internal void ExecuteLiteralImprovementsFeatureSnippet()
-        {
-            Console.WriteLine($"{Environment.NewLine}Literal Improvements Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
-
-            // Small improvements to literals for numeric types, as follows (makes reading these less cumbersome) - useful for delimiting
-            int oneMillionLiteral = 1_000_000;
-
-            // The position of the underscores can be positioned where you like and you can have as many as you like (should you want to)
-            int numberOneLiteral = 129_9_21,
-                numberTwoLiteral = 129__321_____999;
-
-            // Underscores ignored by the compiler
-
-            // Trailing underscores are a 'nope' of course
-            //int trailingUnderscores = 150_000___;
-
-            // Works for hex/binary
-            long hexLiteral = 0xFF_FF_FF_FF;
-            int binaryLiteral = 0b_0010_1010;
-
-            // Inspect the values of the defined literals
-            Console.WriteLine($"oneMillionLiteral = {oneMillionLiteral}");
-            Console.WriteLine($"numberOneLiteral = {numberOneLiteral}");
-            Console.WriteLine($"numberTwoLiteral = {numberTwoLiteral}");
-            Console.WriteLine($"hexLiteral = {hexLiteral}");
-            Console.WriteLine($"binaryLiteral = {binaryLiteral}");
         }
 
         /// <summary>
