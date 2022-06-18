@@ -306,6 +306,8 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteLiteralImprovementsFeatureSnippet()
         {
+            Console.WriteLine($"{Environment.NewLine}Literal Improvements Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
             // Small improvements to literals for numeric types, as follows (makes reading these less cumbersome) - useful for delimiting
             int oneMillionLiteral = 1_000_000;
 
