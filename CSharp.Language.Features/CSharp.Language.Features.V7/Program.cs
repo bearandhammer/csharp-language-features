@@ -8,6 +8,15 @@ namespace CSharp.Language.Features.V7
     internal class Program
     {
         /// <summary>
+        /// Private static method that creates a <see cref="CSharpFeatureSnippetRunnerV71"/> type
+        /// and executes feature snippets (pushing results to the console).
+        /// </summary>
+        private static void ExecuteVersion71Snippets()
+        {
+            CSharpFeatureSnippetRunnerV71 featureSnippetRunner = new CSharpFeatureSnippetRunnerV71();
+        }
+
+        /// <summary>
         /// Private static method that creates a <see cref="CSharpFeatureSnippetRunnerV7"/> type
         /// and executes feature snippets (pushing results to the console).
         /// </summary>
@@ -35,6 +44,7 @@ namespace CSharp.Language.Features.V7
         private static void Main()
         {
             ExecuteVersion7Snippets();
+            ExecuteVersion71Snippets();
         }
     }
 }

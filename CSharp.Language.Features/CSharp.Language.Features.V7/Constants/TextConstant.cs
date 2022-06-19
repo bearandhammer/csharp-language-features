@@ -6,6 +6,11 @@
     internal static class TextConstant
     {
         /// <summary>
+        /// Represents a string separator for feature section titles.
+        /// </summary>
+        internal const string FeatureVersionSeparator = "--------------------------------------------------------";
+
+        /// <summary>
         /// Represents a string separator for section titles (when snippets are executed).
         /// </summary>
         internal const string Separator = "----------------------------------------------";

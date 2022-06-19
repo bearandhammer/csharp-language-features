@@ -12,6 +12,14 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
     internal sealed class CSharpFeatureSnippetRunnerV7
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="CSharpFeatureSnippetRunnerV7"/> class.
+        /// </summary>
+        internal CSharpFeatureSnippetRunnerV7()
+        {
+            Console.WriteLine($"C# 7 Feature Snippets{Environment.NewLine}{TextConstant.FeatureVersionSeparator}");
+        }
+
+        /// <summary>
         /// Executes demo code showing deconstruction mechanics in C# V7.
         /// </summary>
         internal void ExecuteDeconstructionFeatureSnippet()
@@ -109,7 +117,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteOutVariableFeatureSnippet()
         {
-            Console.WriteLine($"Out Variable Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+            Console.WriteLine($"{Environment.NewLine}Out Variable Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
 
             // Old out variable mechanic, requiring explicit/separate variable declaration
             DateTime test1DateTime;
