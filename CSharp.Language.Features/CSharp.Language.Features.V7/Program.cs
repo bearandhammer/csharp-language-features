@@ -1,4 +1,5 @@
 ﻿using CSharp.Language.Features.V7.FeatureSnippetRunner;
+using System.Threading.Tasks;
 
 namespace CSharp.Language.Features.V7
 {
@@ -11,9 +12,12 @@ namespace CSharp.Language.Features.V7
         /// Private static method that creates a <see cref="CSharpFeatureSnippetRunnerV71"/> type
         /// and executes feature snippets (pushing results to the console).
         /// </summary>
-        private static void ExecuteVersion71Snippets()
+        private static async Task ExecuteVersion71Snippets()
         {
             CSharpFeatureSnippetRunnerV71 featureSnippetRunner = new CSharpFeatureSnippetRunnerV71();
+
+            // Execute snippets to explore features
+            await featureSnippetRunner.ExecuteUtiliseAsyncMainFeatureSnippet();
         }
 
         /// <summary>
@@ -41,10 +45,10 @@ namespace CSharp.Language.Features.V7
         /// <summary>
         /// Defines the entry point of the application.
         /// </summary>
-        private static void Main()
+        private static async Task Main()
         {
             ExecuteVersion7Snippets();
-            ExecuteVersion71Snippets();
+            await ExecuteVersion71Snippets();
         }
 
         #region V7.1 Async Main Signatures
