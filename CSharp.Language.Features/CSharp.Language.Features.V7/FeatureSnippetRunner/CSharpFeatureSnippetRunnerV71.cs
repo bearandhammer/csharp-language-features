@@ -1,4 +1,5 @@
 ﻿using CSharp.Language.Features.V7.Constants;
+using CSharp.Language.Features.V7.Models;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -24,6 +25,8 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal async Task ExecuteUtiliseAsyncMainFeatureSnippet()
         {
+            Console.WriteLine($"{Environment.NewLine}Utilise Async Main Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
             // Demo only - retrieve robots.txt content from google using an async API
             using (HttpClient client = new HttpClient())
             {
@@ -37,6 +40,37 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             }
         }
 
-        // Literal - keyword which represents a particular value. Default literals
+        /// <summary>
+        /// Executes demo code showing usage of default expression changes in C# V7.1.
+        /// </summary>
+        internal void ExecuteDefaultExpressionChangesFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Default Expression Changes Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Literal - keyword which represents a particular value. Default literals
+
+            // Older mechanic - use of the default keyword specifying the type (ValueTypes, 0 or false for example or null for reference types)
+            int sampleNumber = default(int);
+            Person samplePerson = default(Person);
+
+            Console.WriteLine($"sampleNumber = {sampleNumber}");
+            Console.WriteLine($"samplePerson {(samplePerson != null ? "is not null" : "is null")}");
+
+            // Simplify default expression (default literal) - inferred by compiler from the context
+            int sampleNumberTwo = default;
+
+            // Can be used with constants (0 forever in this case)
+            const int sampleConstantNumber = default;
+
+            // Nullable const is a no go, as you would expect
+            //const int? nullableSampleConstantNumber = default;
+
+            // Normal nullable, fine - default null
+            int? nullableSampleNumber = default;
+
+            Console.WriteLine($"sampleNumberTwo = {sampleNumberTwo}");
+            Console.WriteLine($"sampleConstantNumber = {sampleConstantNumber}");
+            Console.WriteLine($"nullableSampleNumber {(nullableSampleNumber.HasValue ? "is not null" : "is null")}");
+        }
     }
 }
