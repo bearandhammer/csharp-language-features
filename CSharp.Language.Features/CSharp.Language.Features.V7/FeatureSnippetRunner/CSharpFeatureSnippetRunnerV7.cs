@@ -9,7 +9,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
     /// <summary>
     /// Class type containing execution methods for C# V7 feature snippets.
     /// </summary>
-    internal class CSharpFeatureSnippetRunnerV7
+    internal sealed class CSharpFeatureSnippetRunnerV7
     {
         /// <summary>
         /// Executes demo code showing deconstruction mechanics in C# V7.
