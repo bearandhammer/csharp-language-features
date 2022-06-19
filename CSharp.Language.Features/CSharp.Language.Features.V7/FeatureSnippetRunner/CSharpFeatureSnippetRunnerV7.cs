@@ -32,7 +32,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // You can happily use 'discards' also if you don't need certain values
             var (x1, _) = testPoint;
-            Console.WriteLine($"x1 = {x}");
+            Console.WriteLine($"x1 = {x1}");
         }
 
         /// <summary>
