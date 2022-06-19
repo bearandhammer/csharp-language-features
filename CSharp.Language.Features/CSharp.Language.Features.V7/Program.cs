@@ -46,5 +46,16 @@ namespace CSharp.Language.Features.V7
             ExecuteVersion7Snippets();
             ExecuteVersion71Snippets();
         }
+
+        #region V7.1 Async Main Signatures
+
+        // Signature can take the form of:
+        // async Task / Task<int>
+        // void/int
+        // string[] args/ ()
+        // NOTE: One annoyance - at this 'version' Visual Studio does not index async Main methods as an entry point (which is problematic if other objects define a Main method - one to be aware of
+        // as this would mean you need to rename the other Main methods temporarily)
+
+        #endregion V7.1 Async Main Signatures
     }
 }
