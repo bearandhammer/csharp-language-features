@@ -21,6 +21,17 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecuteDefaultExpressionChangesFeatureSnippet();
         }
 
+        #region V7.1 Async Main Signatures
+
+        // Signature can take the form of:
+        // async Task / Task<int>
+        // void/int
+        // string[] args/ ()
+        // NOTE: One annoyance - at this 'version' Visual Studio does not index async Main methods as an entry point (which is problematic if other objects define a Main method - one to be aware of
+        // as this would mean you need to rename the other Main methods temporarily)
+
+        #endregion V7.1 Async Main Signatures
+
         /// <summary>
         /// Private static method that creates a <see cref="CSharpFeatureSnippetRunnerV7"/> type
         /// and executes feature snippets (pushing results to the console).
@@ -51,16 +62,5 @@ namespace CSharp.Language.Features.V7
             ExecuteVersion7Snippets();
             await ExecuteVersion71Snippets();
         }
-
-        #region V7.1 Async Main Signatures
-
-        // Signature can take the form of:
-        // async Task / Task<int>
-        // void/int
-        // string[] args/ ()
-        // NOTE: One annoyance - at this 'version' Visual Studio does not index async Main methods as an entry point (which is problematic if other objects define a Main method - one to be aware of
-        // as this would mean you need to rename the other Main methods temporarily)
-
-        #endregion V7.1 Async Main Signatures
     }
 }
