@@ -21,26 +21,6 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
-        /// Executes demo code showing usage of an overaching async Main method in C# V7.1.
-        /// </summary>
-        internal async Task ExecuteUtiliseAsyncMainFeatureSnippet()
-        {
-            Console.WriteLine($"{Environment.NewLine}Utilise Async Main Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
-
-            // Demo only - retrieve robots.txt content from google using an async API
-            using (HttpClient client = new HttpClient())
-            {
-                string robotsTxtContent = await client.GetStringAsync("https://google.com/robots.txt");
-
-                if (!string.IsNullOrWhiteSpace(robotsTxtContent))
-                {
-                    string topFiveRobotsTxtLines = string.Join(",", robotsTxtContent.Split("\n").ToList().GetRange(0, 5));
-                    Console.WriteLine($"topFiveRobotsTxtLines = {topFiveRobotsTxtLines}");
-                }
-            }
-        }
-
-        /// <summary>
         /// Executes demo code showing usage of default expression changes in C# V7.1.
         /// </summary>
         internal void ExecuteDefaultExpressionChangesFeatureSnippet()
@@ -71,6 +51,26 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             Console.WriteLine($"sampleNumberTwo = {sampleNumberTwo}");
             Console.WriteLine($"sampleConstantNumber = {sampleConstantNumber}");
             Console.WriteLine($"nullableSampleNumber {(nullableSampleNumber.HasValue ? "is not null" : "is null")}");
+        }
+
+        /// <summary>
+        /// Executes demo code showing usage of an overaching async Main method in C# V7.1.
+        /// </summary>
+        internal async Task ExecuteUtiliseAsyncMainFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Utilise Async Main Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Demo only - retrieve robots.txt content from google using an async API
+            using (HttpClient client = new HttpClient())
+            {
+                string robotsTxtContent = await client.GetStringAsync("https://google.com/robots.txt");
+
+                if (!string.IsNullOrWhiteSpace(robotsTxtContent))
+                {
+                    string topFiveRobotsTxtLines = string.Join(",", robotsTxtContent.Split("\n").ToList().GetRange(0, 5));
+                    Console.WriteLine($"topFiveRobotsTxtLines = {topFiveRobotsTxtLines}");
+                }
+            }
         }
     }
 }
