@@ -1,6 +1,7 @@
 ﻿using CSharp.Language.Features.V7.Constants;
 using CSharp.Language.Features.V7.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -51,6 +52,26 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             Console.WriteLine($"sampleNumberTwo = {sampleNumberTwo}");
             Console.WriteLine($"sampleConstantNumber = {sampleConstantNumber}");
             Console.WriteLine($"nullableSampleNumber {(nullableSampleNumber.HasValue ? "is not null" : "is null")}");
+
+            // This sample array is valid as we have at least one value to key off...we know we are dealing with int[]
+            var sampleArray = new[] { default, 66, default };
+
+            // This, however is invalid of course (why type is the array? We don't know)
+            //var invalidSampleArray = new[] { default, default, default };
+
+            // Default can be used if equality statements, like this...
+            string sampleString = default;
+            if (sampleString == default)
+            {
+                Console.WriteLine("sampleString is equal to its 'default' value.");
+            }
+
+            // Ternary example, here sampleNumberThree has an inferred type of double (0.0 being the default)
+            var sampleNumberThree = sampleNumber > 0 ? default : 1.5;
+            Console.WriteLine($"sampleNumberThree = {sampleNumberThree}");
+
+            // Show the use of a default value in a method signature/as a return value
+            Console.WriteLine($"GetTimeStamps = {GetTimeStamps()}");
         }
 
         /// <summary>
@@ -72,5 +93,12 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
                 }
             }
         }
+
+        /// <summary>
+        /// Example demo method that illustrates the use of default in signatures and as a return value.
+        /// </summary>
+        /// <param name="items">The sample items (not used in this sample)..</param>
+        /// <returns>A default DateTime (as an example only).</returns>
+        private static DateTime GetTimeStamps(List<int> items = default) => default;
     }
 }
