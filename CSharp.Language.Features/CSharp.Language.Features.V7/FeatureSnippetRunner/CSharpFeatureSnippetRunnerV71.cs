@@ -99,7 +99,15 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteInferredTupleNamesFeatureSnippet()
         {
+            // Original sample tuple
+            var sampleOne = (name: "Lewis", age: 38);
+            Console.WriteLine(sampleOne);
 
+            // Another sample, based on sampleOne
+            var sampleTwo = (sampleOne.name, sampleOne.age);
+
+            // You would have previously been forced to reference tuple facets as sampletwo.Item1, etc. But now...
+            Console.WriteLine($"sampleTwo age = { sampleTwo.age }");
         }
 
         /// <summary>
