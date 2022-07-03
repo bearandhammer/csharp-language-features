@@ -108,6 +108,17 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // You would have previously been forced to reference tuple facets as sampletwo.Item1, etc. But now...
             Console.WriteLine($"sampleTwo age = { sampleTwo.age }");
+
+            // More complex example. Here we use linq to generate tuples but not that the name 'Length' has been inferred for us here
+            var sampleThree = new[] { "Jill", "Bob", "Harry", "Jane" };
+            var sampleThreeResult = sampleThree
+                .Select(person => (
+                    person.Length,
+                    FirstChar: person[0]
+                ))
+                .Where(personFacets => personFacets.Length == 4);
+
+            Console.WriteLine(string.Join(",", sampleThreeResult));
         }
 
         /// <summary>
