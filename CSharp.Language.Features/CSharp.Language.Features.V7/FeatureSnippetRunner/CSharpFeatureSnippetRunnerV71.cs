@@ -95,6 +95,14 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing inferred tuple name support in C# V7.1.
+        /// </summary>
+        internal void ExecuteInferredTupleNamesFeatureSnippet()
+        {
+
+        }
+
+        /// <summary>
         /// Example demo method that illustrates the use of default in signatures and as a return value.
         /// </summary>
         /// <param name="items">The sample items (not used in this sample)..</param>
