@@ -113,6 +113,14 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing inferred tuple name support in C# V7.1.
+        /// </summary>
+        internal void ExecutePatternMatchingWithGenericsFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Pattern Matching with Generics Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+        }
+
+        /// <summary>
         /// Executes demo code showing usage of an overaching async Main method in C# V7.1.
         /// </summary>
         internal async Task ExecuteUtiliseAsyncMainFeatureSnippet()

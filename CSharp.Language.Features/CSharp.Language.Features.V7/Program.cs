@@ -20,6 +20,7 @@ namespace CSharp.Language.Features.V7
             await featureSnippetRunner.ExecuteUtiliseAsyncMainFeatureSnippet();
             featureSnippetRunner.ExecuteDefaultExpressionChangesFeatureSnippet();
             featureSnippetRunner.ExecuteInferredTupleNamesFeatureSnippet();
+            featureSnippetRunner.ExecutePatternMatchingWithGenericsFeatureSnippet();
         }
 
         #region V7.1 Async Main Signatures
