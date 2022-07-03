@@ -1,4 +1,5 @@
 ﻿using CSharp.Language.Features.V7.FeatureSnippetRunner;
+using System;
 using System.Threading.Tasks;
 
 namespace CSharp.Language.Features.V7
@@ -35,6 +36,18 @@ namespace CSharp.Language.Features.V7
         #endregion V7.1 Async Main Signatures
 
         /// <summary>
+        /// Private static method that creates a <see cref="CSharpFeatureSnippetRunnerV72"/> type
+        /// and executes feature snippets (pushing results to the console).
+        /// </summary>
+        private static void ExecuteVersion72Snippets()
+        {
+            CSharpFeatureSnippetRunnerV72 featureSnippetRunner = new CSharpFeatureSnippetRunnerV72();
+
+            // Execute snippets to explore features
+            featureSnippetRunner.ExecuteLeadingDigitSeparatorsFeatureSnippet();
+        }
+
+        /// <summary>
         /// Private static method that creates a <see cref="CSharpFeatureSnippetRunnerV7"/> type
         /// and executes feature snippets (pushing results to the console).
         /// </summary>
@@ -63,6 +76,7 @@ namespace CSharp.Language.Features.V7
         {
             ExecuteVersion7Snippets();
             await ExecuteVersion71Snippets();
+            ExecuteVersion72Snippets();
         }
     }
 }
