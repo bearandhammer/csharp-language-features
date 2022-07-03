@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Language.Features.V7", "CSharp.Language.Features.V7\CSharp.Language.Features.V7.csproj", "{4A562C75-6C43-4C41-9B38-33AA93BECF80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp.Language.Features.V7", "CSharp.Language.Features.V7\CSharp.Language.Features.V7.csproj", "{4A562C75-6C43-4C41-9B38-33AA93BECF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Language.Features.RefAssemblies", "CSharp.Language.Features.RefAssemblies\CSharp.Language.Features.RefAssemblies.csproj", "{BCED4DC9-8B60-4306-B5AF-8717AD78F47D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4A562C75-6C43-4C41-9B38-33AA93BECF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A562C75-6C43-4C41-9B38-33AA93BECF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A562C75-6C43-4C41-9B38-33AA93BECF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCED4DC9-8B60-4306-B5AF-8717AD78F47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCED4DC9-8B60-4306-B5AF-8717AD78F47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCED4DC9-8B60-4306-B5AF-8717AD78F47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCED4DC9-8B60-4306-B5AF-8717AD78F47D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
