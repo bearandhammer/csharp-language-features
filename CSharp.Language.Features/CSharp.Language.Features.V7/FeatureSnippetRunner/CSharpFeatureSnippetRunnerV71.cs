@@ -118,6 +118,10 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         internal void ExecutePatternMatchingWithGenericsFeatureSnippet()
         {
             Console.WriteLine($"{Environment.NewLine}Pattern Matching with Generics Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Create a sample type to illustrate the changes to pattern matching (invoking Cook)
+            Cauliflower sampleVegetable = new Cauliflower();
+            Cook(sampleVegetable);
         }
 
         /// <summary>
@@ -146,5 +150,29 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// <param name="items">The sample items (not used in this sample)..</param>
         /// <returns>A default DateTime (as an example only).</returns>
         private static DateTime GetTimeStamps(List<int> items = default) => default;
+
+        /// <summary>
+        /// Example demo method that illustrates the changes to pattern matching in C# 7.1.
+        /// </summary>
+        /// <typeparam name="T">A type inheriting from <see cref="Vegetable"/>.</typeparam>
+        /// <param name="vegetable">The vegetable to cook.</param>
+        private static void Cook<T>(T vegetable)
+            where T : Vegetable
+        {
+            // Before the changes, the following would have been necessary to compile code (using pattern matching, noting the cast to object)
+            if ((object)vegetable is Cauliflower cauliflowerOne)
+            {
+                Console.WriteLine($"vegetable is a cauliflower (if check). Type = {cauliflowerOne.GetType().Name }");
+            }
+
+            switch ((object)vegetable)
+            {
+                case Cauliflower cauliflowerTwo:
+                    Console.WriteLine($"vegetable is a cauliflower (switch check). Type = {cauliflowerTwo.GetType().Name}");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
