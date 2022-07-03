@@ -99,15 +99,17 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteInferredTupleNamesFeatureSnippet()
         {
+            Console.WriteLine($"{Environment.NewLine}Inferred Tuple Names Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
             // Original sample tuple
             var sampleOne = (name: "Lewis", age: 38);
-            Console.WriteLine(sampleOne);
+            Console.WriteLine($"sampleOne = {sampleOne}");
 
             // Another sample, based on sampleOne
             var sampleTwo = (sampleOne.name, sampleOne.age);
 
             // You would have previously been forced to reference tuple facets as sampletwo.Item1, etc. But now...
-            Console.WriteLine($"sampleTwo age = { sampleTwo.age }");
+            Console.WriteLine($"sampleTwo age = {sampleTwo.age}");
 
             // More complex example. Here we use linq to generate tuples but not that the name 'Length' has been inferred for us here
             var sampleThree = new[] { "Jill", "Bob", "Harry", "Jane" };
@@ -118,7 +120,16 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
                 ))
                 .Where(personFacets => personFacets.Length == 4);
 
-            Console.WriteLine(string.Join(",", sampleThreeResult));
+            Console.WriteLine($"sampleThreeResult = {string.Join(",", sampleThreeResult)}");
+
+            // This also works through deconstruction
+            var sampleFour = DateTime.UtcNow;
+            var sampleFourResult = (sampleFour.Hour, sampleFour.Minute);
+            Console.WriteLine($"sampleFourResult Hour = {sampleFourResult.Hour}");
+
+            // This works even through this kind of assignment
+            var sampleFiveResult = ((sampleFourResult.Hour, sampleFourResult.Minute) = (14, 15));
+            Console.WriteLine($"sampleFourResult Hour = {sampleFiveResult.Hour}, Minute = {sampleFiveResult.Minute}");
         }
 
         /// <summary>
