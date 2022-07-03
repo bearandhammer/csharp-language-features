@@ -160,12 +160,27 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             where T : Vegetable
         {
             // Before the changes, the following would have been necessary to compile code (using pattern matching, noting the cast to object)
-            if ((object)vegetable is Cauliflower cauliflowerOne)
+            //if ((object)vegetable is Cauliflower cauliflowerOne)
+            //{
+            //    Console.WriteLine($"vegetable is a cauliflower (if check). Type = {cauliflowerOne.GetType().Name }");
+            //}
+
+            //switch ((object)vegetable)
+            //{
+            //    case Cauliflower cauliflowerTwo:
+            //        Console.WriteLine($"vegetable is a cauliflower (switch check). Type = {cauliflowerTwo.GetType().Name}");
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+            // However, now the casting is no longer required as of this version
+            if (vegetable is Cauliflower cauliflowerOne)
             {
-                Console.WriteLine($"vegetable is a cauliflower (if check). Type = {cauliflowerOne.GetType().Name }");
+                Console.WriteLine($"vegetable is a cauliflower (if check). Type = {cauliflowerOne.GetType().Name}");
             }
 
-            switch ((object)vegetable)
+            switch (vegetable)
             {
                 case Cauliflower cauliflowerTwo:
                     Console.WriteLine($"vegetable is a cauliflower (switch check). Type = {cauliflowerTwo.GetType().Name}");
