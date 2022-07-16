@@ -40,6 +40,26 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing how the ability to provide named arguments to methods has changed in C# V7.2.
+        /// </summary>
+        internal void ExecuteNamedArgumentsChangesFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}Named Argument Changes Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Previous functionality, named arguments always have to trail the rest of the arguments...
+            NamedArgumentsTestMethod(55, arg2: 105);
+
+            // You still have to be conscious of ordering but you can now use named arguments in a non-trailing way...
+            NamedArgumentsTestMethod(arg1: 105, 155);
+
+            // Still invalid to contradict ordering, however
+            //NamedArgumentsTestMethod(65, arg1: 78);
+
+            // And fine, as always, to specify all arguments
+            NamedArgumentsTestMethod(arg1: 99, arg2: 100);
+        }
+
+        /// <summary>
         /// Executes demo code showing how the 'private protected' modifier functions in C# V7.2.
         /// This demo pairs with other sample code in CSharp.Language.Features.PrivateProtected.
         /// </summary>
@@ -60,33 +80,13 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             // Create a derived type (this assembly) to illustrate access modifiers further (can access 'a' and 'b')
             PrivateProtectedSampleDerived sampleDerived = new PrivateProtectedSampleDerived();
             sampleDerived.IllustrateAccessToFields();
-            
+
             // Also fine
             int derivedBValue = sampleDerived.b;
             Console.WriteLine($"derivedBValue = {derivedBValue}");
-            
+
             // But, of course, this will trip up private protected (not from a derived class, although same assembly)
             //int derivedCValue = sampleDerived.c;
-        }
-
-        /// <summary>
-        /// Executes demo code showing how the ability to provide named arguments to methods has changed in C# V7.2.
-        /// </summary>
-        internal void ExecuteNamedArgumentsChangesFeatureSnippet()
-        {
-            Console.WriteLine($"{Environment.NewLine}Named Argument Changes Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
-
-            // Previous functionality, named arguments always have to trail the rest of the arguments...
-            NamedArgumentsTestMethod(55, arg2: 105);
-
-            // You still have to be conscious of ordering but you can now use named arguments in a non-trailing way...
-            NamedArgumentsTestMethod(arg1: 105, 155);
-
-            // Still invalid to contradict ordering, however
-            //NamedArgumentsTestMethod(65, arg1: 78);
-
-            // And fine, as always, to specify all arguments
-            NamedArgumentsTestMethod(arg1: 99, arg2: 100);
         }
 
         /// <summary>

@@ -145,13 +145,6 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
-        /// Example demo method that illustrates the use of default in signatures and as a return value.
-        /// </summary>
-        /// <param name="items">The sample items (not used in this sample)..</param>
-        /// <returns>A default DateTime (as an example only).</returns>
-        private static DateTime GetTimeStamps(List<int> items = default) => default;
-
-        /// <summary>
         /// Example demo method that illustrates the changes to pattern matching in C# 7.1.
         /// </summary>
         /// <typeparam name="T">A type inheriting from <see cref="Vegetable"/>.</typeparam>
@@ -185,9 +178,17 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
                 case Cauliflower cauliflowerTwo:
                     Console.WriteLine($"vegetable is a cauliflower (switch check). Type = {cauliflowerTwo.GetType().Name}");
                     break;
+
                 default:
                     break;
             }
         }
+
+        /// <summary>
+        /// Example demo method that illustrates the use of default in signatures and as a return value.
+        /// </summary>
+        /// <param name="items">The sample items (not used in this sample)..</param>
+        /// <returns>A default DateTime (as an example only).</returns>
+        private static DateTime GetTimeStamps(List<int> items = default) => default;
     }
 }

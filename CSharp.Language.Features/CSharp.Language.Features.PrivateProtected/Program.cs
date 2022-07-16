@@ -19,7 +19,7 @@ namespace CSharp.Language.Features.PrivateProtected
             //int derivedAValue = sampleDerived.a;  // Innaccessible: we are not in the defining type
             //int derivedBValue = sampleDerived.b;  // Innaccessible: defined as 'internal', so only available inside the defining assembly
             //int derivedCValue = sampleDerived.c;  // Innaccessible: we are not in the defining type or a derived class (from the defining assembly)
-            
+
             // All good (hit b and c)...
             sampleDerived.IllustrateAccessToFields();
 
