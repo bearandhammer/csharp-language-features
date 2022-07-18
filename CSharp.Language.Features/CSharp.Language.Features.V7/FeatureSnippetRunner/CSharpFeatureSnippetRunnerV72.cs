@@ -30,8 +30,11 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Measure distance providing point structs by reference (rather than copying structs)
             double distance = MeasureDistanceBetweenPoints(point1, point2);
-
             Console.WriteLine($"Distance between {point1} and {point2} is {distance}.");
+
+            // Nothing prevents calling a method with an in parameter with a newly constructed object - still legal
+            double distanceFromOrigin = MeasureDistanceBetweenPoints(point1, new PointStruct());
+            Console.WriteLine($"distanceFromOrigin = {distanceFromOrigin}");
         }
 
         /// <summary>
@@ -128,6 +131,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// specifies that the structures will be provided by reference, not value (not an entire copy).
         /// NOTES:
         /// 1. The in keyword makes the struct 'readonly' (it is immutable).
+        /// 2. You cannot create an overload of the method where the signature differs by the in keyword only (well, it will compile, but you just want be able to call the 'in' parameter variant - used to cause ambigious errors).
         /// </summary>
         /// <param name="point1">The first point.</param>
         /// <param name="point2">The second point.</param>
@@ -149,5 +153,8 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             return Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
         }
+
+        // Uncomment this to see the 'in' keyword variant get sidelined!
+        //private double MeasureDistanceBetweenPoints(PointStruct point1, PointStruct point2) => 0.0;
     }
 }
