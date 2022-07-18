@@ -46,6 +46,7 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecuteLeadingDigitSeparatorsFeatureSnippet();
             featureSnippetRunner.ExecutePrivateProtectedAccessModifierFeatureSnippet();
             featureSnippetRunner.ExecuteNamedArgumentsChangesFeatureSnippet();
+            featureSnippetRunner.ExecuteInParameterFeatureSnippet();
         }
 
         /// <summary>
