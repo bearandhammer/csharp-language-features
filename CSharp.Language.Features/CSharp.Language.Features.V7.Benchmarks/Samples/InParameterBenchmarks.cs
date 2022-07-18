@@ -6,7 +6,7 @@ using System;
 namespace CSharp.Language.Features.V7.Benchmarks.Samples
 {
     [MemoryDiagnoser]
-    [NativeMemoryProfiler]
+    //[NativeMemoryProfiler]
     public class InParameterBenchmarks
     {
         private PointStruct point1;
