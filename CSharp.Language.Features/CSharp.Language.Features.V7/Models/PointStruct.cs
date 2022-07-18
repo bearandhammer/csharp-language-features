@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// A sample point type (as a struct) for demo purposes.
+    /// Struct size - 8 bytes per double.
     /// </summary>
     public struct PointStruct
     {

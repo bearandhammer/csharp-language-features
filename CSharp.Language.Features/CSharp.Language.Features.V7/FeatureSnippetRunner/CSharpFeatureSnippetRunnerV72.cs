@@ -107,5 +107,20 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             Console.WriteLine($"arg1 = {arg1}");
             Console.WriteLine($"arg2 = {arg2}");
         }
+
+        /// <summary>
+        /// Measures the distance between the supplied <see cref="PointStruct"/> types. The 'in' keyword
+        /// specifies that the structures will be provided by reference, not value (not an entire copy).
+        /// </summary>
+        /// <param name="point1">The first point.</param>
+        /// <param name="point2">The second point.</param>
+        /// <returns>A <see cref="double"/> representing the difference between two points.</returns>
+        private double MeasureDistanceBetweenPoints(in PointStruct point1, in PointStruct point2)
+        {
+            double differenceX = point1.X - point2.X,
+                differenceY = point1.Y - point2.Y;
+
+            return Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
+        }
     }
 }
