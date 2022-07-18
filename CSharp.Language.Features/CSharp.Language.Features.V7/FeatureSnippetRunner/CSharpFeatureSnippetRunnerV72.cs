@@ -18,6 +18,23 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing how the in parameter functions in C# V7.2 (reference semantics to value types).
+        /// </summary>
+        internal void ExecuteInParameterFeatureSnippet()
+        {
+            Console.WriteLine($"{Environment.NewLine}In Parameter Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
+            // Create some sample points
+            PointStruct point1 = new PointStruct(1, 1),
+                point2 = new PointStruct(4, 5);
+
+            // Measure distance providing point structs by reference (rather than copying structs)
+            double distance = MeasureDistanceBetweenPoints(point1, point2);
+
+            Console.WriteLine($"Distance between {point1} and {point2} is {distance}.");
+        }
+
+        /// <summary>
         /// Executes demo code showing usage of leading digit separators in C# V7.2.
         /// </summary>
         internal void ExecuteLeadingDigitSeparatorsFeatureSnippet()
@@ -75,7 +92,7 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Protected internal - can access (same assembly)
             int bValue = sampleBase.b;
-            Console.WriteLine($"bValue = {bValue}");
+            Console.WriteLine($"bValue = {bValue}.");
 
             // Create a derived type (this assembly) to illustrate access modifiers further (can access 'a' and 'b')
             PrivateProtectedSampleDerived sampleDerived = new PrivateProtectedSampleDerived();
@@ -83,19 +100,17 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             // Also fine
             int derivedBValue = sampleDerived.b;
-            Console.WriteLine($"derivedBValue = {derivedBValue}");
+            Console.WriteLine($"derivedBValue = {derivedBValue}.");
 
             // But, of course, this will trip up private protected (not from a derived class, although same assembly)
             //int derivedCValue = sampleDerived.c;
         }
 
         /// <summary>
-        /// Executes demo code showing how the in parameter functions in C# V7.2 (reference semantics to value types).
+        /// Sample demo method that increments the X value of a <see cref="PointStruct"/>.
         /// </summary>
-        internal void ExecuteInParameterFeatureSnippet()
-        {
-            Console.WriteLine($"{Environment.NewLine}In Parameter Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
-        }
+        /// <param name="point">The point to modify.</param>
+        private static void IncrementPointXValue(ref PointStruct point) => point.X++;
 
         /// <summary>
         /// Private static test method for use when illustrating named argument changes.
@@ -111,12 +126,24 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// <summary>
         /// Measures the distance between the supplied <see cref="PointStruct"/> types. The 'in' keyword
         /// specifies that the structures will be provided by reference, not value (not an entire copy).
+        /// NOTES:
+        /// 1. The in keyword makes the struct 'readonly' (it is immutable).
         /// </summary>
         /// <param name="point1">The first point.</param>
         /// <param name="point2">The second point.</param>
         /// <returns>A <see cref="double"/> representing the difference between two points.</returns>
         private double MeasureDistanceBetweenPoints(in PointStruct point1, in PointStruct point2)
         {
+            // In keyword makes parameters readonly, so modifications are not possible:
+            //point1 = new PointStruct(1, 2);
+            //IncrementPointXValue(ref point1);
+
+            // You do get interesting behaviour if you call a mutation on a point, however. This mutation
+            // attempts to reset X and Y to zero on one of the supplied points (which is allowed and compiles)...
+            point1.Reset();
+
+            // Post reset, nothing changes. The reason...Reset is called on a by value copy (of the memory for point1)!
+
             double differenceX = point1.X - point2.X,
                 differenceY = point1.Y - point2.Y;
 

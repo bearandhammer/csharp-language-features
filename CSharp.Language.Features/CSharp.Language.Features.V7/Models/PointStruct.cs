@@ -28,9 +28,14 @@
         public double Y { get; set; }
 
         /// <summary>
+        /// Resets the X and the Y values on this struct to 0.
+        /// </summary>
+        public void Reset() => X = Y = 0;
+
+        /// <summary>
         /// Converts this instance to a <see cref="string"/>.
         /// </summary>
-        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        /// <returns>A <see cref="string" /> that represents this struct.</returns>
         public override string ToString() => $"({X},{Y})";
     }
 }
