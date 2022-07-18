@@ -1,12 +1,14 @@
-﻿using System;
+﻿using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
+using CSharp.Language.Features.V7.Benchmarks.Samples;
 
 namespace CSharp.Language.Features.V7.Benchmarks
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Summary summary = BenchmarkRunner.Run<InParameterBenchmarks>();
         }
     }
 }
