@@ -65,6 +65,8 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteSpanFeatureSnippet()
         {
+            Console.WriteLine($"{Environment.NewLine}Span<T> Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
             //
             unsafe
             {
@@ -149,6 +151,8 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// </summary>
         internal void ExecuteRefReadonlySupportFeatureSnippet()
         {
+            Console.WriteLine($"{Environment.NewLine}Ref Readonly Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
+
             // You may be tempted to create a public static PointStruct field called 'Origin', for example, on the PointStruct type to use a 'single' instance. But due to the 'in'
             // keyword (PointStruct being a ValueType), you just end up copying the memory. So doing the following is like using the new keyword
             //double distanceFromOrigin = MeasureDistanceBetweenPoints(new PointStruct(), PointStruct.Origin);
