@@ -63,26 +63,30 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         /// <summary>
         /// Executes demo code showing usage of the <see cref="Span{T}"/> ref struct type.
         /// </summary>
-        internal void ExecuteSpanFeatureSnippet()
+        internal void ExecuteSpanTFeatureSnippet()
         {
             Console.WriteLine($"{Environment.NewLine}Span<T> Feature Snippet {Environment.NewLine}{TextConstant.Separator}");
 
-            //
             unsafe
             {
-                byte* buffer = stackalloc byte[100];
-                Span<byte> span = new Span<byte>(buffer, 100);
+                // Allocate an array and get a pointer. Span<T> can refer to all or part of this memory (here, we ref to all of it) - managed memory
+                byte* pointer = stackalloc byte[100];
+                Span<byte> memory = new Span<byte>(pointer, 100);
 
+                // Unmanaged memory example for Span<T>...
                 IntPtr unmanagedPointer = Marshal.AllocHGlobal(100);
                 Span<byte> unmanagedMemory = new Span<byte>(unmanagedPointer.ToPointer(), 100);
+                
+                // Remembering to free the memory
                 Marshal.FreeHGlobal(unmanagedPointer);
             }
 
-            //
+            // Automatic cast to Span<char>
             char[] greeting = "Hello".ToCharArray();
             Span<char> arrayMemory = greeting;
             Console.WriteLine(greeting);
             
+            // Examples of Span<T> members ('.Fill()' & '.Clear()')
             arrayMemory.Fill('a');
             Console.WriteLine("greeting after '.Fill()' on 'arrayMemory':");
             Console.WriteLine(greeting);
@@ -91,9 +95,12 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
             Console.WriteLine("greeting after '.Clear()' on 'arrayMemory':");
             Console.WriteLine(greeting);
 
-            // 
+            // Strings are immutable, so a if we a span from a string it must be a ReadOnlySpan
             ReadOnlySpan<char> furtherGreeting = "Hi there!".AsSpan();
             Console.WriteLine($"furtherGreeting has {furtherGreeting.Length} elements");
+
+            // Span<T> documentation:
+            // https://docs.microsoft.com/en-us/dotnet/api/system.span-1?view=net-6.0
         }
 
         /// <summary>

@@ -48,7 +48,7 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecuteNamedArgumentsChangesFeatureSnippet();
             featureSnippetRunner.ExecuteInParameterFeatureSnippet();
             featureSnippetRunner.ExecuteRefReadonlySupportFeatureSnippet();
-            featureSnippetRunner.ExecuteSpanFeatureSnippet();
+            featureSnippetRunner.ExecuteSpanTFeatureSnippet();
         }
 
         /// <summary>
