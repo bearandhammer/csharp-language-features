@@ -47,6 +47,7 @@ namespace CSharp.Language.Features.V7
             featureSnippetRunner.ExecutePrivateProtectedAccessModifierFeatureSnippet();
             featureSnippetRunner.ExecuteNamedArgumentsChangesFeatureSnippet();
             featureSnippetRunner.ExecuteInParameterFeatureSnippet();
+            featureSnippetRunner.ExecuteRefReadonlySupportFeatureSnippet();
         }
 
         /// <summary>

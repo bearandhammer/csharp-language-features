@@ -7,6 +7,11 @@
     public struct PointStruct
     {
         /// <summary>
+        /// A static <see cref="PointStruct"/> representing the origin.
+        /// </summary>
+        private static PointStruct origin = new PointStruct();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PointStruct"/> struct.
         /// </summary>
         /// <param name="x">The x value.</param>
@@ -17,6 +22,14 @@
             Y = y;
         }
 
+        /// <summary>
+        /// Gets a <see cref="PointStruct"/> representing the origin.
+        /// NOTE: does not return a copy of the PointStruct, but just a 'readonly' reference to it.
+        /// </summary>
+        public static ref readonly PointStruct Origin => ref origin;
+
+        // This ties to the ref readonly keyword sample...this is not possible to use in a static way in conjunction with methods using the 'in' syntax (copies memory)
+        // public static PointStruct Origin = new PointStruct();
         /// <summary>
         /// Gets or sets the X value.
         /// </summary>

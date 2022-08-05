@@ -110,6 +110,36 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
         }
 
         /// <summary>
+        /// Executes demo code showing how ref readonly works in C# V7.2.
+        /// </summary>
+        internal void ExecuteRefReadonlySupportFeatureSnippet()
+        {
+            // You may be tempted to create a public static PointStruct field called 'Origin', for example, on the PointStruct type to use a 'single' instance. But due to the 'in'
+            // keyword (PointStruct being a ValueType), you just end up copying the memory. So doing the following is like using the new keyword
+            //double distanceFromOrigin = MeasureDistanceBetweenPoints(new PointStruct(), PointStruct.Origin);
+
+            // However, using a ref readonly keyword will achieve what you want (to always use the same PointStruct, by reference)
+            PointStruct point1 = new PointStruct(1, 1);
+            double distanceFromOrigin = MeasureDistanceBetweenPoints(point1, PointStruct.Origin);
+            Console.WriteLine($"distanceFromOrigin = {distanceFromOrigin}");
+
+            // We can take a by value copy of PointStruct.Origin (we want value type semantics) by simply doing the following
+            PointStruct copyOfOrigin = PointStruct.Origin;
+            Console.WriteLine($"copyOfOrigin = {copyOfOrigin}");
+
+            // Property being accessed returns a readonly object - you cannot take an ordinary reference to that object (not possible)
+            // ref double referenceToOrigin = ref PointStruct.Origin;
+            // referenceToOrigin.X++;
+
+            // You can have a ref readonly variable, however
+            ref readonly PointStruct originReference = ref PointStruct.Origin;
+
+            // But you still can't modify anything, of course
+            //originReference.X++;
+            Console.WriteLine($"originReference = {copyOfOrigin}");
+        }
+
+        /// <summary>
         /// Sample demo method that increments the X value of a <see cref="PointStruct"/>.
         /// </summary>
         /// <param name="point">The point to modify.</param>
