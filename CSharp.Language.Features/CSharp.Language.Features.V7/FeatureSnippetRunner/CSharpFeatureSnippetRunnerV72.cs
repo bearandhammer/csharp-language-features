@@ -1,6 +1,7 @@
 ﻿using CSharp.Language.Features.V7.Constants;
 using CSharp.Language.Features.V7.Models;
 using System;
+using System.Runtime.InteropServices;
 
 namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 {
@@ -57,6 +58,40 @@ namespace CSharp.Language.Features.V7.FeatureSnippetRunner
 
             Console.WriteLine($"sampleOne = {sampleOne}");
             Console.WriteLine($"sampleTwo = {sampleTwo}");
+        }
+
+        /// <summary>
+        /// Executes demo code showing usage of the <see cref="Span{T}"/> ref struct type.
+        /// </summary>
+        internal void ExecuteSpanFeatureSnippet()
+        {
+            //
+            unsafe
+            {
+                byte* buffer = stackalloc byte[100];
+                Span<byte> span = new Span<byte>(buffer, 100);
+
+                IntPtr unmanagedPointer = Marshal.AllocHGlobal(100);
+                Span<byte> unmanagedMemory = new Span<byte>(unmanagedPointer.ToPointer(), 100);
+                Marshal.FreeHGlobal(unmanagedPointer);
+            }
+
+            //
+            char[] greeting = "Hello".ToCharArray();
+            Span<char> arrayMemory = greeting;
+            Console.WriteLine(greeting);
+            
+            arrayMemory.Fill('a');
+            Console.WriteLine("greeting after '.Fill()' on 'arrayMemory':");
+            Console.WriteLine(greeting);
+
+            arrayMemory.Clear();
+            Console.WriteLine("greeting after '.Clear()' on 'arrayMemory':");
+            Console.WriteLine(greeting);
+
+            // 
+            ReadOnlySpan<char> furtherGreeting = "Hi there!".AsSpan();
+            Console.WriteLine($"furtherGreeting has {furtherGreeting.Length} elements");
         }
 
         /// <summary>
